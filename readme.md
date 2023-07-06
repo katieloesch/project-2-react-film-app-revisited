@@ -1,4 +1,4 @@
-# Project 2 - React List App
+# Project 2 - React List App (Revisited)
 
 ## Overview
 
@@ -28,6 +28,9 @@ The user can add movies and tv shows to a 'watched' and a 'to-watch' list, mark 
 ## <a name="deployment-link"></a> 2. Deployment link
 
 - The project is hosted online on GitHub pages: https://katieloesch.github.io/project-2-react-film-app/
+
+- original project repo: https://github.com/katieloesch/project-2-react-film-app
+- original deployment link: https://github.com/katieloesch/project-2-react-film-app
 
 ## <a name="installation"></a> 3. Installation
 
@@ -238,6 +241,8 @@ I continued working on this project after submission. The first update I made wa
 Since submitting this project I have also developed a preference for useing SCSS over CSS so another change I made is to change all the CSS files to SCSS.
 
 I also decided to move the forms for adding and editing film and tv titles as well as the details display to separate routes rather than using modals as I felt that would make it more straightforward to implement responsive design later on.
+
+Another addition is the incorporation of firebase and firestore to store user data. In the original project, none of the items added to wishlists persisted after reload as it a front-end application. I used firebase for user accounts and authenication and cloud firestore to store each user's lists of to-watch and watched titles.
 
 ## 8. <a name="challenges"></a> Challenges
 
