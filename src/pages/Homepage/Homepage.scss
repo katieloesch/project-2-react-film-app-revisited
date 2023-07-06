@@ -1,0 +1,29 @@
+#gif-obi-wan {
+    height: 25%;
+}
+
+.trending-items-container {
+    display: flex;
+}
+
+.trending-title, .trending-film-title, .trending-tv-title {
+    background-color: var(--red);
+    color: var(--yellow);
+    font-size: 1.75rem;
+    border-radius: 10px;
+    padding: 5px 15px;
+}
+
+.trending-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+}
+
+.trending-films-list, .trending-tv-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    list-style: none;
+}

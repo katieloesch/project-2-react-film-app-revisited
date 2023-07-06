@@ -1,0 +1,61 @@
+
+.watchedList {
+    
+        
+        .btns-watchedList {
+            display: flex;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 2rem;
+            margin-bottom: 1.5rem;
+    
+            button {
+                padding: 3px 10px;
+                background-color: transparent;
+                color: white;
+                border: 1px solid white;
+                transition: 0.4s ease-in-out;
+            }
+    
+            button:hover {
+                cursor: pointer;
+                background-color: var(--red);
+            }
+        }
+
+        .msg,
+        .results-section .msg {
+            display: block;
+            padding-left: 5rem;
+            padding-right: 5rem;
+          line-height: 200%;
+            
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 1.25rem;
+            a {
+                text-decoration: none;
+                color: var(--yellow);
+            }
+    
+            a:hover {
+                cursor: pointer;
+                text-decoration: underline;
+      
+    
+                
+            }
+        }
+
+        ul {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            list-style: none;
+    
+        }
+    
+}

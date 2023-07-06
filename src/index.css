@@ -1,0 +1,70 @@
+@font-face {
+  font-family: 'caviar_dreams';
+  src: url('./assets/fonts/CaviarDreams-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal; 
+}
+
+@font-face {
+  font-family: 'caviar_dreams';
+  src: url('./assets/fonts/Caviar_Dreams_Bold-webfont.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'caviar_dreams';
+  src: url('./assets/fonts/CaviarDreams_Italic-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'caviar_dreams';
+  src: url('./assets/fonts/CaviarDreams_BoldItalic-webfont.woff') format('woff');
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'uppereastsideregular';
+  src: url('./assets/fonts//UpperEastSide-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+  --black: black;
+  --red: darkred;
+  --yellow: #ffdb58;
+  --yellow-light: #ffefb4;
+  --ochre: #6f5e3c;
+  --green: #71BC78;
+  --pink: #fcaeb8;
+  
+  --font-main: 'caviar_dreams', 'Source Sans Pro', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  --font-editorial: 'uppereastsideregular', 'Source Sans Pro', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--font-main);
+  scroll-behavior: smooth;
+}
+  
+body {
+  text-align: center;
+  font-family: var(--font-main);
+  color: white;
+  background-image: url('./assets/images/pulpfiction.jpg');
+  background-color: var(--black);
+}
+
+.btn {
+  font-weight: bold;
+  font-size: 1em;
+  border-radius: 10px;
+}

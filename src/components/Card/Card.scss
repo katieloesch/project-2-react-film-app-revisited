@@ -1,0 +1,187 @@
+
+
+.film-card, .tv-card {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    height: 420px;
+    padding: 5px;
+    margin: 8px auto;
+    border-radius: 10px;
+    position: relative;
+}
+
+.film-card {
+    background-color: #9a2424;
+
+}
+
+.tv-card {
+    background-color: var(--ochre);
+
+}
+
+.card-poster-img, .poster-not-available {
+    border-radius: 10px;
+    width: 100%;
+    height: 275px;
+}
+
+.tv-card .poster-not-available, .film-card .poster-not-available{
+    border: none;
+    width: 190px;
+}
+
+.card-poster-img:hover {
+    cursor: pointer;
+}
+
+.card-info {
+    width: 100%;
+    text-align: center;
+    font-size: 17px;
+    padding: 8px 0;
+    font-weight: bold;
+}
+
+.card-btns {
+    padding: 0 2px;
+    padding-bottom: 3px;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.add-to-watch-btn, .remove-from-to-watch-btn, .mark-as-watched-btn, .unmark-as-watched-btn {
+    border-radius: 50%;
+    background-color: transparent;
+    border: none;
+    width: 2.3em;
+    height: 2.3em;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.add-to-watch-btn {
+    background-color: var(--green);
+    border: 2px solid var(--green);
+}
+
+.remove-from-to-watch-btn {
+    background-color: var(--pink);
+    border: 2px solid var(--pink);
+}
+
+.mark-as-watched-btn {
+    background-color: var(--yellow);
+    border: 2px solid var(--yellow);
+}
+
+.unmark-as-watched-btn {
+    background-color: black;
+    border: 2px solid black;
+}
+
+
+.add-to-watch-btn:hover, .remove-from-to-watch-btn:hover, .mark-as-watched-btn:hover, .unmark-as-watched-btn:hover {
+    transform: scale(1.2);
+    transition: 0.4s;
+    cursor: pointer;
+}
+
+@media (max-width: 550px) {
+    .card {
+        width: 45%;
+    }
+  
+}
+
+/* checkboxes */
+
+.checkbox-container {
+//    border: 5px solid yellow;
+   display: flex;
+   align-items: center;
+   position: absolute;
+
+   input[type='checkbox'] {
+
+    cursor: pointer;
+    opacity: 0;
+    width: 1.75em;
+    height: 1.75em;
+    margin-top: 1px;
+    margin-left: 4px;
+    transition: 0.5s ease-in-out;
+
+    }
+
+   label {
+    cursor: pointer;
+    // border: 2px solid red;
+ 
+    position: absolute;
+    display: flex;
+    transition: 0.5s ease-in-out;
+   }
+   label::before {
+    cursor: pointer;
+    content: '';
+    width: 1.75em;
+    height: 1.75em;
+    // border: 2px solid var(--yellow);
+    border-radius: 50%}
+    margin-top: 6px;
+    margin-left: 3px;
+
+    
+}
+
+
+
+    .checkbox-container {
+        label::before {
+            border: 2px solid rgb(99, 99, 99);
+
+            background-color: rgba(156, 156, 156, 0.95);
+         }
+
+
+         label:hover::before, .input-type[type='checkbox']:hover + label::before {
+            border: 2px solid darkred;
+            content: '\2714';
+            display: flex;
+        justify-content: center;
+        align-items: center;
+        color: darkred;
+
+         }
+
+    
+    }
+
+    .checkbox-container input[type='checkbox']:checked + label::before {
+        border: 2px solid darkred;
+        content: '\2714';
+        color: darkred;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        background-color: rgba(246, 201, 209);
+        transition: 0.4s;
+         
+    }
+    
+
+
+// .tv-card {
+//     input[type="checkbox"] {
+//         outline: 3px solid var(--ochre);
+//     }
+
+// }
+
