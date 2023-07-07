@@ -17,11 +17,31 @@
     gap: 5rem;
     font-size: 2.5rem;
     font-family: var(--font-editorial);
+
+    .span-popcorn, .span-projector {
+        scale: 1.3;
+    }
+   
+    @media (max-width: 600px) {
+    gap: 3rem;
+
+    .span-popcorn, .span-projector  {
+         scale: 1;
+
+     }
+    }
+    @media (max-width: 450px) {
+
+     .span-popcorn, .span-projector  {
+         display: none;
+     }
+
+    }
 }
 
 .header-title-text {
-                font-family: var(--font-editorial);
-                font-size: 3rem;
+    font-family: var(--font-editorial);
+    font-size: 3rem;
 
 }
 
@@ -30,11 +50,7 @@
 }
 
 
-// @media (max-width:1200px) {
-//     .header {
-//         padding-top: 20px;
-//         font-size: 2.5vw;
-//     }
+
 
 //     .header-title {
 //         font-size: 6vw;

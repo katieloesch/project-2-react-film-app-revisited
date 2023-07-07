@@ -29,8 +29,10 @@ The user can add movies and tv shows to a 'watched' and a 'to-watch' list, mark 
 
 - deployment link: https://react-film-app.katieloesch.co.uk/
 
+<br>
+
 - original project repo: https://github.com/katieloesch/project-2-react-film-app
-- original deployment link: https://github.com/katieloesch/project-2-react-film-app
+  - original deployment link: https://github.com/katieloesch/project-2-react-film-app
 
 ## <a name="installation"></a> 3. Installation
 
@@ -52,6 +54,8 @@ Additional components:
   - https://www.npmjs.com/package/react-router
 - react-youtube (v10.1.0)
   - https://www.npmjs.com/package/react-youtube
+- react-icons
+  - https://www.npmjs.com/package/react-icons
 
 ### Additional tools used:
 
@@ -71,8 +75,13 @@ Additional components:
 ### External web resources:
 
 - icons
-  - all icons used are Scalable Vector Graphics from iconify (open source svg library)
-  - https://iconify.design/
+
+  - iconify (open source svg library)
+    - https://iconify.design/
+  - react icons
+    - https://www.npmjs.com/package/react-icons
+    - https://react-icons.github.io/react-icons/
+
 - sourcefonts: FontSquirrel (https://www.fontsquirrel.com/)
   - caviarDreams (https://www.fontsquirrel.com/fonts/caviar-dreams)
   - upperEastSide (https://www.fontsquirrel.com/fonts/uppereastside)
