@@ -25,6 +25,10 @@
             font-size: 2rem;
             margin-bottom: 4rem;
 
+            @media only screen and (max-width: 500px) {
+                padding-top: 20px;
+            }
+
         }
 
         .new-film-form-columns,
@@ -55,7 +59,6 @@
                 gap: 1.75rem;
                 width: 100%;
             }
-
 
             .new-film-form-column-left li,
             .new-film-form-column-right li,
@@ -149,6 +152,10 @@
                 
 
             }
+
+            @media only screen and (max-width: 750px) {
+                flex-direction: column;
+            }
            
          
         }
@@ -177,6 +184,14 @@
 
             @media only screen and (max-width: 1500px) {
                 width: 30%;
+            }
+            @media only screen and (max-width: 850px) {
+                width: 50%;
+            }
+            @media only screen and (max-width: 550px) {
+                flex-direction: column;
+                gap: 1rem;
+                width: 90%;
             }
         }
 
@@ -207,7 +222,52 @@
             @media only screen and (max-width: 1500px) {
                 width: 50%;
             }
+            @media only screen and (max-width: 850px) {
+                width: 80%;
+            }
+            @media only screen and (max-width: 550px) {
+                flex-direction: column;
+                gap: 1rem;
+                width: 90%;
+            }
+
         }
+
+        @media only screen and (max-width: 1150px) {
+            width: 90%;
+        }
+        @media only screen and (max-width: 500px) {
+            padding: 10px;
+        }
+
+
+        
+
+
+    }
+
+    @media only screen and (max-width: 1050px) {
+     
+       padding-bottom: 40rem;
+    }
+    @media only screen and (max-width: 1000px) {
+    
+       padding-bottom: 0rem;
+    }
+    @media only screen and (max-width: 800px) {
+       padding-top: 4rem;
+       margin-bottom: 25rem;
+    }
+
+    @media only screen and (max-width: 500px) {
+       margin-bottom: 5rem;
+    }
+
+    @media only screen and (max-width: 450px) {
+        margin-bottom: 10rem;
+    }
+    @media only screen and (max-width: 400px) {
+        margin-bottom: 7rem;
     }
     
 }
@@ -218,8 +278,8 @@
     align-items: center;
     justify-content: center;
 
-     .new-tv-form,
-     .edit-tv-form {
+    .new-tv-form,
+    .edit-tv-form {
         border: 1px solid white;
         border-radius: 10px;
         background-color: rgba(0, 0, 0, 0.9);
@@ -238,10 +298,14 @@
             text-align: center;
             font-size: 2rem;
             margin-bottom: 4rem;
+
+            @media only screen and (max-width: 500px) {
+                padding-top: 20px;
+            }
         }
 
-         .new-tv-form-columns,
-         .edit-tv-form-columns {
+        .new-tv-form-columns,
+        .edit-tv-form-columns {
             display: flex;
             align-items: flex-start;
             justify-content: center;
@@ -361,13 +425,11 @@
                         color: var(--yellow);
                     }
                 }
+                @media only screen and (max-width: 750px) {
+                    flex-direction: column;
+                }  
+        }
 
-                
-
-            
-           
-         
-    }
         .btns-add-tv {
             width: 20%;
             display: flex;
@@ -375,6 +437,7 @@
             align-items: center;
             justify-content: space-around;
             margin-top: 3rem;
+            margin-bottom: 40px;
 
             button {
 
@@ -390,9 +453,13 @@
                 cursor: pointer;
                 background-color: var(--red);
             }
-
             @media only screen and (max-width: 1500px) {
-                width: 30%;
+                width:50%;
+            }
+            @media only screen and (max-width: 550px) {
+                flex-direction: column;
+                gap: 1rem;
+                width: 90%;
             }
         }
 
@@ -403,6 +470,7 @@
             align-items: center;
             justify-content: space-around;
             margin-top: 3rem;
+            margin-bottom: 40px;
 
             button {
 
@@ -419,10 +487,45 @@
                 background-color: var(--red);
             }
 
+
             @media only screen and (max-width: 1500px) {
                 width: 38%;
             }
+            @media only screen and (max-width: 850px) {
+                width: 80%;
+            }
+            @media only screen and (max-width: 550px) {
+                flex-direction: column;
+                gap: 1rem;
+                width: 90%;
+            }
+        }
+
+        @media only screen and (max-width: 1150px) {
+            width: 90%;
+        }
+        @media only screen and (max-width: 500px) {
+            padding: 10px;
         }
     }
-    
+
+    @media only screen and (max-width: 1050px) {
+        padding-bottom: 40rem;
+    }
+    @media only screen and (max-width: 1000px) {
+        padding-bottom: 0rem;
+    }
+    @media only screen and (max-width: 800px) {
+        padding-top: 4rem;
+        margin-bottom: 25rem;
+    }
+    @media only screen and (max-width: 500px) {
+        margin-bottom: 5rem;
+    }
+    @media only screen and (max-width: 450px) {
+        margin-bottom: 10rem;
+    }
+    @media only screen and (max-width: 400px) {
+        margin-bottom: 7rem;
+    }
 }

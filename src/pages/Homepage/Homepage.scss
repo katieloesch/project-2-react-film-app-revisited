@@ -1,29 +1,149 @@
-#gif-obi-wan {
-    height: 25%;
-}
-
-.trending-items-container {
+.homepage {
     display: flex;
-}
-
-.trending-title, .trending-film-title, .trending-tv-title {
-    background-color: var(--red);
-    color: var(--yellow);
-    font-size: 1.75rem;
-    border-radius: 10px;
-    padding: 5px 15px;
-}
-
-.trending-title {
-    display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    gap: 1em;
-}
+    justify-content: center;
+    width: 100%;
 
-.trending-films-list, .trending-tv-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    list-style: none;
+    .gif {
+        max-width: 20%;
+        height: auto;
+        display: flex;
+        text-align: center;
+        margin-bottom: 3rem;
+        margin-top: 0;
+
+        @media only screen and (max-width: 1500px) {
+            max-width: 25%;
+            margin-top: -1rem;
+        }
+        @media only screen and (max-width: 1250px) {
+            max-width: 30%;
+        }
+        @media only screen and (max-width: 1000px) {
+            max-width: 35%;
+        }
+        @media only screen and (max-width: 900px) {
+            max-width: 45%;
+        }
+        @media only screen and (max-width: 650px) {
+            max-width: 55%;
+        }
+        @media only screen and (max-width: 550px) {
+            max-width: 65%;
+            margin-top: 1rem;
+
+
+        }
+        @media only screen and (max-width: 500px) {
+            max-width: 90%;
+        }
+    }
+
+    .trending-titles {
+        width: 95%;
+        display: flex;
+        position: relative;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        background-color: var(--red);
+        color: var(--yellow);
+        border-radius: 10px;
+        font-size: 1.75rem;
+        margin-bottom: 2rem;
+        padding: 1rem;
+
+        @media only screen and (max-width: 1500px) {
+            padding: 0.5rem;
+        }
+        @media only screen and (max-width: 900px) {
+            justify-content: space-between;
+
+        }
+        @media only screen and (max-width: 700px) {
+           font-size: 1.25rem;
+           padding-bottom: 1.5rem;
+           padding-top: 4.5rem;
+           display: flex;
+           align-items: center;
+           justify-content: center;
+           gap: 1rem;
+
+        }
+
+        .trending-title {
+            position: absolute;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            gap: 1.5rem;
+
+            @media only screen and (max-width: 700px) {
+                top: 30%;
+            }
+        
+        }
+
+        p {
+            padding-left: 3rem;
+            padding-right: 3rem;
+
+            @media only screen and (max-width: 700px) {
+                margin-top: 1rem;
+            }
+
+            @media only screen and (max-width: 400px) {
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+            }
+        }
+    }
+
+    .trending-titles-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        max-width: 95%;
+        margin: auto;
+
+
+        .card-grid-container {
+            width: 50%;
+            display: flex;
+
+            .card-grid {
+                width: 100%;
+                flex-wrap: wrap;
+                display: flex;
+                justify-content: space-between;
+                list-style: none;
+            }
+        }
+    }
+
+    @media only screen and (max-width: 1050px) {
+        margin-bottom: 45rem;
+    }
+    @media only screen and (max-width: 800px) {
+        margin-top: 3rem;
+        margin-bottom: 20rem;
+    }
+    @media only screen and (max-width: 720px) {
+        margin-bottom: 30rem;
+    }
+    @media only screen and (max-width: 700px) {
+        margin-bottom: 0rem;
+    }
+    @media only screen and (max-width: 600px) {
+        margin-bottom: 15rem;
+    }
+    @media only screen and (max-width: 420px) {
+        margin-bottom: 12rem;
+    }
 }

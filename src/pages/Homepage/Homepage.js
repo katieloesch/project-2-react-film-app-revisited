@@ -65,38 +65,31 @@ export default function Homepage() {
 
 
   return (
-    <div>
-        <img className='gif' id='gif-obi-wan' alt='welcome gif' src='https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExYzM1NzI0MjM2ZTQyNzYyMDcwMWNjNjM0ZmQzMDI3YzYxMjA2YjU5YiZjdD1n/3ornk57KwDXf81rjWM/giphy.gif'/>
-        
-        <div className='trending-title '>
-            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="2.5em" viewBox="0 0 16 16"><path fill="currentColor" d="M5.52.359A.5.5 0 0 1 6 0h4a.5.5 0 0 1 .474.658L8.694 6H12.5a.5.5 0 0 1 .395.807l-7 9a.5.5 0 0 1-.873-.454L6.823 9.5H3.5a.5.5 0 0 1-.48-.641l2.5-8.5z"/></svg>
-            <span>Trending</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="2.5em" viewBox="0 0 16 16"><path fill="currentColor" d="M5.52.359A.5.5 0 0 1 6 0h4a.5.5 0 0 1 .474.658L8.694 6H12.5a.5.5 0 0 1 .395.807l-7 9a.5.5 0 0 1-.873-.454L6.823 9.5H3.5a.5.5 0 0 1-.48-.641l2.5-8.5z"/></svg>
-        </div>
-      
-        <div className='trending-items-container'>
-            <div className='trending-films-container'>
-                <span className='trending-film-title'>Films</span>
-                <section className='results-section'>
-                {(trendingFilms.length !== 0) && <ul className='trending-films-list'>
-                    {trendingFilms.map(item => <FilmCard key={item.id} item={item} setToWatchListElements={setToWatchListElements} setWatchedElements={setWatchedElements}/>)}
-                    </ul>}
-                </section>
-            </div>
-            <div className='trending-tv-container'>
-                <span className='trending-tv-title'>Tv Shows</span>
-                <section className='results-section'>
-                {(trendingTv.length !== 0) && <ul className='trending-tv-list'>
-                    {trendingTv.map(item => <TvCard key={item.id} item={item} setToWatchListElements={setToWatchListElements} setWatchedElements={setWatchedElements} />)}
-                    </ul>}
-                </section>
-            </div>
-        </div>
-        
-    
+    <div className='homepage'>
+      <img className='gif' alt='welcome gif' src='https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExYzM1NzI0MjM2ZTQyNzYyMDcwMWNjNjM0ZmQzMDI3YzYxMjA2YjU5YiZjdD1n/3ornk57KwDXf81rjWM/giphy.gif'/>
 
-
+      <div className='trending-titles'>
+          <p>Films</p>
+        <div className='trending-title'>
+          <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="2.5em" viewBox="0 0 16 16"><path fill="currentColor" d="M5.52.359A.5.5 0 0 1 6 0h4a.5.5 0 0 1 .474.658L8.694 6H12.5a.5.5 0 0 1 .395.807l-7 9a.5.5 0 0 1-.873-.454L6.823 9.5H3.5a.5.5 0 0 1-.48-.641l2.5-8.5z"/></svg>
+          <span>Trending</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="2.5em" viewBox="0 0 16 16"><path fill="currentColor" d="M5.52.359A.5.5 0 0 1 6 0h4a.5.5 0 0 1 .474.658L8.694 6H12.5a.5.5 0 0 1 .395.807l-7 9a.5.5 0 0 1-.873-.454L6.823 9.5H3.5a.5.5 0 0 1-.48-.641l2.5-8.5z"/></svg>
+      </div>
+        <p>Tv Shows</p>
+      </div>
       
+      <div className='trending-titles-container'>
+          <div className='card-grid-container'>
+                {(trendingFilms.length !== 0) && <ul className='card-grid'>
+                  {trendingFilms.map(item => <FilmCard key={item.id} item={item} setToWatchListElements={setToWatchListElements} setWatchedElements={setWatchedElements}/>)}
+                </ul>}
+          </div>
+          <div className='card-grid-container'>
+                {(trendingTv.length !== 0) && <ul className='card-grid'>
+                  {trendingTv.map(item => <TvCard key={item.id} item={item} setToWatchListElements={setToWatchListElements} setWatchedElements={setWatchedElements} />)}
+                </ul>}
+          </div>
+      </div>
     </div>
   )
 }
