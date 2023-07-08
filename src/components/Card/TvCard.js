@@ -180,7 +180,7 @@ if (item.poster_path){
       />)}
   </div>
       <div className='card-info'>
-        <span>{item.name}
+        <span>{item.name}&nbsp;
         {item.first_air_date && `(${processDate(item.first_air_date)})`}
         </span>       
       </div>

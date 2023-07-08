@@ -4,6 +4,8 @@
     align-items: center;
     justify-content: center;
     width: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    backdrop-filter: 10px;
 
     .gif {
         max-width: 20%;
@@ -64,13 +66,29 @@
         @media only screen and (max-width: 700px) {
            font-size: 1.25rem;
            padding-bottom: 1.5rem;
-           padding-top: 4.5rem;
+           padding-top: 2.5rem;
            display: flex;
            align-items: center;
            justify-content: center;
+           gap: 10rem;
+
+        }
+        @media only screen and (max-width: 480px) {
+
+           gap: 5rem;
+
+        }
+        @media only screen and (max-width: 420px) {
+
            gap: 1rem;
 
         }
+        @media only screen and (max-width: 400px) {
+
+           gap: 6rem;
+
+        }
+  
 
         .trending-title {
             position: absolute;
@@ -111,7 +129,6 @@
         justify-content: center;
         max-width: 95%;
         margin: auto;
-
 
         .card-grid-container {
             width: 50%;

@@ -1,61 +1,140 @@
 
 .watchedList {
-    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 100%;
+    margin: auto;
+    background-color: rgba(0, 0, 0, 0.85);
+    backdrop-filter: 10px;
+
+    h1 {
+        width: 90%;
+    }
+
+    .btns-watchedList {
+        display: flex;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        margin-top: 2rem;
+        margin-bottom: 1.5rem;
+
+        button {
+            padding: 3px 10px;
+            background-color: transparent;
+            color: white;
+            border: 1px solid white;
+            transition: 0.4s ease-in-out;
+        }
+
+        button:hover {
+            cursor: pointer;
+            background-color: var(--red);
+        }
+    }
+
+    .msg,
+    .results-section .msg {
+        display: block;
+        padding-left: 5rem;
+        padding-right: 5rem;
+        line-height: 200%;
         
-        .btns-watchedList {
-            display: flex;
-            text-align: center;
-            justify-content: center;
-            align-items: center;
-            gap: 1rem;
-            margin-top: 2rem;
-            margin-bottom: 1.5rem;
-    
-            button {
-                padding: 3px 10px;
-                background-color: transparent;
-                color: white;
-                border: 1px solid white;
-                transition: 0.4s ease-in-out;
-            }
-    
-            button:hover {
-                cursor: pointer;
-                background-color: var(--red);
-            }
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-size: 1.25rem;
+        a {
+            text-decoration: none;
+            color: var(--yellow);
         }
 
-        .msg,
-        .results-section .msg {
-            display: block;
-            padding-left: 5rem;
-            padding-right: 5rem;
-          line-height: 200%;
-            
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            font-size: 1.25rem;
-            a {
-                text-decoration: none;
-                color: var(--yellow);
+        a:hover {
+            cursor: pointer;
+            text-decoration: underline;
+        }
+    }
+    
+    .watched-titles-container {
+   
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        max-width: 90%;
+        margin: auto;
+
+        .card-grid-container {
+            width: 100%;
+            display: flex;
+
+            @media only screen and (max-width: 450px) {
+                width: 50%;
             }
-    
-            a:hover {
-                cursor: pointer;
-                text-decoration: underline;
-      
-    
+
+            @media only screen and (max-width: 320px) {
+                width: 60%;
+            }
+            @media only screen and (max-width: 300px) {
+                width: 70%;
+            }
+            .card-grid {
+                width: 100%;
+                flex-wrap: wrap;
+                display: flex;
+                justify-content: space-between;
+                list-style: none;
+
+                .film-card, .tv-card {
+           
+                    @media only screen and (max-width: 400px) {
+                        height: 380px;
+                        width: 200px;
+                    }
+                 
+                    .card-poster-img, .poster-not-available {
                 
+                        @media only screen and (max-width: 400px) {
+                            height: 220px;
+                        }
+                    }
+                
+                    .poster-not-available {
+                
+                        @media only screen and (max-width: 400px) {
+                            height: 220px;
+                        }
+                    }
+                }
             }
         }
 
-        ul {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            list-style: none;
-    
+        @media only screen and (max-width: 400px) {
+            width: 100%;
         }
+    }
+
+    @media only screen and (max-width: 1050px) {
+        margin-bottom: 42rem;
+    }
+    @media only screen and (max-width: 800px) {
+        margin-top: 3rem;
+        margin-bottom: 20rem;
+    }
+    @media only screen and (max-width: 720px) {
+        margin-bottom: 30rem;
+    }
+    @media only screen and (max-width: 700px) {
+        margin-bottom: 0rem;
+    }
+    @media only screen and (max-width: 600px) {
+        margin-bottom: 15rem;
+    }
+    @media only screen and (max-width: 420px) {
+        margin-bottom: 12rem;
+    }
+
     
 }

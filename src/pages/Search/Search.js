@@ -22,8 +22,6 @@ export default function Search() {
     const [toWatchListElements, setToWatchListElements] = useState(toWatchList.current)
     const [watchedElements, setWatchedElements] = useState(toWatchList.current)
 
-
-
     useEffect(() => {
 
             if (currentUser) {
@@ -72,10 +70,7 @@ export default function Search() {
             })
         }
         setQueryFilm('')
-        
-
     }
-
 
     function handleSearchSubmitTv(e) {
         e.preventDefault()
@@ -93,8 +88,6 @@ export default function Search() {
                 setTvResultsArr(queryResults)})
         }
         setQueryTv('')
-        
-
     }
 
   return (
@@ -133,14 +126,24 @@ export default function Search() {
                 </button>
             </form>
         </div>
-        <section className='results-section'>
-        {(filmResultsArr.length !== 0) && <ul className='film-results-list'>
-            {filmResultsArr.map((item) => <FilmCard key={item.id} item={item} mediaType={'film'} setToWatchListElements={setToWatchListElements} setWatchedElements={setWatchedElements} />)}
-            </ul>}
-        {(tvResultsArr.length !== 0) && <ul className='tv-results-list'>
-                {tvResultsArr.map(item => <TvCard key={item.id} item={item} mediaType={'tv'} setToWatchListElements={setToWatchListElements} setWatchedElements={setWatchedElements}/>)}
-                </ul>}
-        </section>
+
+        
+            <div className='search-titles-container'>
+                <div className='card-grid-container'>
+                    {(filmResultsArr.length !== 0) && <ul className='card-grid'>
+                        {filmResultsArr.map((item) => <FilmCard key={item.id} item={item} mediaType={'film'} setToWatchListElements={setToWatchListElements} setWatchedElements={setWatchedElements} />)}
+                        </ul>}
+                    {(tvResultsArr.length !== 0) && <ul className='card-grid'>
+                            {tvResultsArr.map(item => <TvCard key={item.id} item={item} mediaType={'tv'} setToWatchListElements={setToWatchListElements} setWatchedElements={setWatchedElements}/>)}
+                        </ul>}
+                </div>
+            </div>
+
+
+            
+
+            
+   
 
     </div>
   )

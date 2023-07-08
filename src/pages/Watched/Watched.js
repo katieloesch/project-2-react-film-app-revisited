@@ -15,20 +15,15 @@ export default function Watched() {
   const navigate = useNavigate();
   const { currentUser } = useAuth()
 
-  const { watched, toWatchList, selected, setSelected, unMarkAsWatched, editItem, markSelectedAsWatched } = useContext(FilmTvContext);
+  const { watched, toWatchList, selected, setSelected, unMarkAsWatched, markSelectedAsWatched } = useContext(FilmTvContext);
   const [watchedElements, setWatchedElements] = useState(watched.current)
 
   useEffect(() => {
 
     if (currentUser) {
-      console.log('-------user found')
-      console.log(currentUser.uid)
-
     getUserData(currentUser.uid).then(
       (data) => {
         if (data !== null && data.watched.length > 0) {
-          console.log('watchedddddddddddd')
-          console.log(watched.current)
           watched.current = data.watched
           setWatchedElements(watched.current)
 
@@ -36,7 +31,7 @@ export default function Watched() {
       }
     )
     } else {
-      console.log('**********no user found')
+      console.log('no user found')
     }
   }, [])
 
@@ -79,17 +74,19 @@ export default function Watched() {
             <button className='btn btn-clear-watched' onClick={clearWatched}>Clear List</button>
             {selected.length>0 && <button className='btn btn-clear-selected' onClick={handleClearSelected}>Clear selected</button>}
           </div>
-  
-          <section className='results-section'>
-            {(watchedElements && watchedElements.length !== 0) ? <ul className='results-list'>{watchedElements.map(item => {
-              if (item.title) {
-                return <FilmCard key={item.id} item={item} setWatchedListElements={setWatchedElements} setWatchedElements={setWatchedElements}/>
-              } else {
-                return <TvCard key={item.id} item={item} setWatchedElements={setWatchedElements}  setWatchedListElements={setWatchedElements} />
-              }
-              
-            })}</ul> : <div className='msg'><p>Your watched list is currently empty! </p><p> To add titles to your list, go to the <Link to='/'>Home</Link> page to see trending films & tv shows or search for titles in the on the <Link to='/search'>search</Link> page.</p></div>}
-          </section>
+          
+          <div className='watched-titles-container'>
+            <div className='card-grid-container'>
+              {(watchedElements && watchedElements.length !== 0) ? <ul className='card-grid'>{watchedElements.map(item => {
+                if (item.title) {
+                  return <FilmCard key={item.id} item={item} setWatchedListElements={setWatchedElements} setWatchedElements={setWatchedElements}/>
+                } else {
+                  return <TvCard key={item.id} item={item} setWatchedElements={setWatchedElements}  setWatchedListElements={setWatchedElements} />
+                }
+                
+              })}</ul> : <div className='msg'><p>Your watched list is currently empty! </p><p> To add titles to your list, go to the <Link to='/'>Home</Link> page to see trending films & tv shows or search for titles in the on the <Link to='/search'>search</Link> page.</p></div>}
+            </div>
+          </div>
           </div>
   
         )}

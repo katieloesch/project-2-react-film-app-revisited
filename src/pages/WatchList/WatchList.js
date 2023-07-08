@@ -70,28 +70,30 @@ export default function WatchList() {
 
   return (
     <div className='watchlist'>
-    <h1>Watchlist</h1>
+      <h1>Watchlist</h1>
 
       {!currentUser ? <div className='watchlist-message-2'><Link to='/login'>Sign in</Link>&nbsp;to add titles to your watchlist</div> : (
         <div>
-        <div className='btns-watchlist'>
-          <button className='btn btn-clear-to-watch' onClick={clearToWatch}>Clear List</button>
-          <button className='btn btn-create-new-item' onClick={() => (navigate('/add-film'))}>Add new Film</button>
-          <button className='btn btn-create-new-item' onClick={() => (navigate('/add-tv'))}>Add new Tv Show</button>
-          {selected.length>0 && <button className='btn btn-clear-selected' onClick={handleClearSelected}>Clear selected</button>}
-        </div>
-
-        <section className='results-section'>
-          {(toWatchListElements && toWatchListElements.length !== 0) ? <ul className='results-list'>{toWatchListElements.map(item => {
-            if (item.title) {
+          <div className='btns-watchlist'>
+            <button className='btn btn-clear-to-watch' onClick={clearToWatch}>Clear List</button>
+            <button className='btn btn-create-new-item' onClick={() => (navigate('/add-film'))}>Add new Film</button>
+            <button className='btn btn-create-new-item' onClick={() => (navigate('/add-tv'))}>Add new Tv Show</button>
+            {selected.length>0 && <button className='btn btn-clear-selected' onClick={handleClearSelected}>Clear selected</button>}
+          </div>
+          
+        <div className='watchlist-titles-container'>
+        <div className='card-grid-container'>
+        {(toWatchListElements && toWatchListElements.length !== 0) ? <ul className='card-grid'>{toWatchListElements.map(item => {
+          if (item.title) {
               return <FilmCard key={item.id} item={item} setToWatchListElements={setToWatchListElements}/>
             } else {
               return <TvCard key={item.id} item={item} setToWatchListElements={setToWatchListElements} />
             }
             
-          })}</ul> : <div className='watchlist-message-1'><p>Your watchlist is currently empty! </p><p> To add titles to your list, go to the <Link to='/'>Home</Link> page to see trending films & tv shows or search for titles in the on the <Link to='/search'>search</Link> page.</p></div>}
-        </section>
+          })}</ul> : <div className='msg'><p>Your watched list is currently empty! </p><p> To add titles to your list, go to the <Link to='/'>Home</Link> page to see trending films & tv shows or search for titles in the on the <Link to='/search'>search</Link> page.</p></div>}
         </div>
+      </div>
+      </div>
 
       )}
     

@@ -170,7 +170,6 @@ if (item.poster_path){
       <div className='card-poster'>
         {poster_url === images.posterNotAvailable ? <img className='poster-not-available' src={images.posterNotAvailable} onClick={handleImgClicked} alt={`${item.title} poster not available`} style={{width: `${180}px; height: auto`}}/>
         : (
-          
             <img
             className='card-poster-img'
             src={poster_url}
@@ -180,7 +179,7 @@ if (item.poster_path){
           />)}
       </div>
       <div className='card-info'>
-        <span>{item.title}
+        <span>{item.title}&nbsp;
           {item.release_date && `(${processDate(item.release_date)})`}
         </span>       
       </div>
