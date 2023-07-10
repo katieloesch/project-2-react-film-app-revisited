@@ -83,7 +83,7 @@ console.log(editTitle)
 
 const [companyFields, setCompanyFields] = useState([formData.production_companies])
 function addCompanyField(){
-  setCompanyFields([...companyFields, {name: ''}])
+  setCompanyFields([...companyFields, ''])
 }
 
 function removeCompanyField(index) {
@@ -96,7 +96,7 @@ function removeCompanyField(index) {
 
 function handleCompanyField(e, index) {
   const data = [...companyFields]
-  data[0][index] = {name: e.target.value}
+  data[index] = e.target.value
   setCompanyFields(data);
   const newInput = {...formData}
   newInput[e.target.name] = data
@@ -382,10 +382,10 @@ async function handleFormSubmit(e) {
             <li>Production Companies:
 
           
-            {companyFields[0].length ?         companyFields[0].map((field, index) => {
+            {companyFields.length ? companyFields.map((field, index) => {
             
                 return (<div key={index}>
-                <input name='production_companies' value={field.name} onChange={(e) => handleCompanyField(e, index)}></input>
+                <input name='production_companies' value={field} onChange={(e) => handleCompanyField(e, index)}></input>
                 <div className='btns-fields'>
                     <button type="button" className='btn field-btn' onClick={addLangField}>+</button>
                     <button type="button" className='btn field-btn' onClick={() => removeCompanyField(index)}>-</button>

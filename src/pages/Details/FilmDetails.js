@@ -14,7 +14,8 @@ import './Details.scss'
 
 const FilmDetails = () => {
 
-  const { detailsTitle, toWatchList, watched, markAsWatched, unMarkAsWatched, removeFromWatchList, addNewToWatch, checkIfonToWatchList, checkIfonWatched, setEditTitle } = useContext(FilmTvContext);
+  
+  const { detailsTitle, toWatchList, watched, markAsWatched, unMarkAsWatched, removeFromWatchList, addNewToWatch, onWatchedList, checkIfonToWatchList, checkIfonWatched, setEditTitle } = useContext(FilmTvContext);
   const { currentUser } = useAuth()
   const [showDeleteFromWatchList, setShowDeleteFromWatchList] = useState(checkIfonToWatchList(detailsTitle))
   const [showDeleteFromWatched, setShowDeleteFromWatched] = useState(checkIfonWatched(detailsTitle))
@@ -104,7 +105,13 @@ function handleOpenTrailer() {
   }
 
   function handleEditClicked() {
+
+    if (detailsTitle.production_companies[0].name) {
+      detailsTitle.production_companies = detailsTitle.production_companies.map((item) => item.name)
+    }
    setEditTitle(detailsTitle)
+   console.log('editing:::::::::::::::::::')
+   console.log(detailsTitle)
    navigate('/edit-film')
   }
 
@@ -180,12 +187,17 @@ const trailerVariants = {
                         src={`https://image.tmdb.org/t/p/w${imgWidth}${detailsTitle.poster_path}`}
                         alt={`${detailsTitle.title} poster`}
                         />)
-                        : <img
+                        : (detailsTitle.poster_link ? 
+                          <img
+                        className='details-poster-img'
+                        src={`${detailsTitle.poster_link}`}
+                        alt={`${detailsTitle.title} poster`}
+                        /> : <img
                         className='poster-not-available'
                         src={images.posterNotAvailable}
                         alt={`${detailsTitle.title} poster not available`}
                         style={{width: `${imgWidth}px`}}
-                        />}
+                        />)}
 
                         {/* buttons */}
                         <div className= 'details-btns'>
@@ -240,10 +252,15 @@ const trailerVariants = {
                         {(detailsTitle.genres&&detailsTitle.genres.length!==0) && <li key='genres'><ul className='details-ul'><span className='details-title'>Genres: </span>{detailsTitle.genres.map((genre) => {
                         return <li className="details-li" key={genre.name}>{'- '}{genre.name}</li>})}
                         </ul></li>}
-                   
-                        {(detailsTitle.production_companies&&detailsTitle.production_companies.length!==0) && <li key='prod-companies'><ul className='details-ul'><span className='details-title'>Production Companies:&nbsp;</span>{detailsTitle.production_companies.map((company) => {
+                        {console.log(detailsTitle)}                   
+                        {(detailsTitle.production_companies&&detailsTitle.production_companies.length!==0) && (
+                          detailsTitle.production_companies[0].name ? 
+                          <li key='prod-companies'><ul className='details-ul'><span className='details-title'>Production Companies:&nbsp;</span>{detailsTitle.production_companies.map((company) => {
                             return <li className="details-li" key={company.name}>{'- '}{company.name}</li>})}
-                            </ul></li>}
+                            </ul></li>
+                            : <li key='prod-companies'><ul className='details-ul'><span className='details-title'>Production Companies:&nbsp;</span>{detailsTitle.production_companies.map((company) => {
+                            return <li className="details-li" key={company}>{'- '}{company}</li>})}
+                            </ul></li>)}
                         </ul>
 
 

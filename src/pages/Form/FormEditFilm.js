@@ -28,7 +28,7 @@ const FormEditFilm = () => {
     tagline: editTitle.tagline,
     title: editTitle.title,
     media_type: 'movie',
-    user_entered: editTitle.user_entered ? editTitle.user_entered : '',
+    user_entered: editTitle.user_entered ? editTitle.user_entered : false,
     videos: editTitle.videos
 
   }
@@ -49,33 +49,53 @@ const FormEditFilm = () => {
 
   const imgWidth = '400'
 
-function handleFormChange(e) {
-    const newInput = {...formData, [e.target.name]: e.target.value}
-    setFormData(newInput)
-}
+  function handleFormChange(e) {
+      const newInput = {...formData, [e.target.name]: e.target.value}
+      setFormData(newInput)
+  }
 
-let [companyFields, setCompanyFields] = useState([formData.production_companies])
+  let [companyFields, setCompanyFields] = useState(formData.production_companies)
 
 function addCompanyField(){
-  setCompanyFields([...companyFields, {name: ''}])
+  const newCompanies = [...formData.production_companies, '']
+  setCompanyFields(newCompanies)
 }
 
 function removeCompanyField(index) {
-  if (index > 0) {
-    const fields = [...companyFields]
-    fields.splice(index, 1)
-    setCompanyFields(fields)
-  }
+  let newCompanies = [...formData.production_companies]
+    if (index > 0) {
+      newCompanies.splice(index, 1)
+    }
+  setCompanyFields(newCompanies)
+  setFormData({...formData, production_companies: newCompanies})
 }
 
-
 function handleCompanyField(e, index) {
-  const data = [...companyFields]
-  data[0][index] = {name: e.target.value}
+
+  console.log(e.target.value)
+  const data = [...formData.production_companies]
+  data[index] = e.target.value
   setCompanyFields(data);
   const newInput = {...formData}
   newInput[e.target.name] = data
   setFormData(newInput)
+  console.log('newInput<<<<<<<<<<<<<<<<<<<<<<<<')
+  console.log(newInput)
+  // console.log(newInput[e.)
+  // setFormData((formData) => newInput)
+  // console.log('newInput')
+  // console.log(newInput)
+
+  // function handleLangField(e, index) {
+  //   const data = [...languageFields]
+  //   data[index] = {name: e.target.value}
+  //   setLanguageFields(data);
+  //   const newInput = {...formData}
+  //   newInput[e.target.name] = data
+  //   setFormData(newInput)
+  
+  // }
+  
 }
 
 const [countryFields, setCountryFields] = useState(formData.production_countries)
@@ -83,17 +103,17 @@ function addCountryField(){
  setCountryFields([...countryFields, {name: ''}])
 }
 
-
 function removeCountryField(index) {
+
+  let newCountries = [...formData.production_countries]
+
   if (index > 0) {
-    const fields = [...countryFields]
-    fields.splice(index, 1)
-    setCountryFields(fields)
+    newCountries.splice(index, 1)
   }
 
-
+  setCountryFields(newCountries)
+  setFormData({...formData, production_countries: newCountries})
 }
-
 
 function handleCountryField(e, index) {
   const data = [...countryFields]
@@ -111,14 +131,14 @@ function addLangField(){
 }
 
 function removeLangField(index) {
+  let newLang = [...formData.spoken_languages]
+
   if (index > 0) {
-    const fields = [...languageFields]
-    fields.splice(index, 1)
-    setLanguageFields(fields)
+    newLang.splice(index, 1)
   }
-
+  setLanguageFields(newLang)
+  setFormData({...formData, spoken_languages: newLang})
 }
-
 
 function handleLangField(e, index) {
   const data = [...languageFields]
@@ -127,23 +147,23 @@ function handleLangField(e, index) {
   const newInput = {...formData}
   newInput[e.target.name] = data
   setFormData(newInput)
- }
+
+}
 
 
 const [genres, setGenres] = useState(formData.genres)
-
-
 function addGenre(){
  setGenres([...genres, {name: ''}])
 }
 
-
 function removeGenre(index) {
+  let newGenres = [...formData.genres]
   if (index > 0) {
-    const dropDowns = [...genres]
-    dropDowns.splice(index, 1)
-    setGenres(dropDowns)
+    newGenres.splice(index, 1)
+    
   }
+  setGenres(newGenres)
+  setFormData({...formData, genres: newGenres})
 }
 
 function handleGenres(e, index) {
@@ -155,33 +175,53 @@ function handleGenres(e, index) {
   setFormData(newInput)
 }
 
+function handleUrlChange(e) {
+  console.log(formData.user_entered)
+  console.log(e.target.name)
+  console.log(e.target.value)
+  const newInput = {...formData, [e.target.name]: e.target.value}
+  newInput.user_entered = true
+    newInput.poster_path = ''
+
+  // console.log('NEWinput')
+  // console.log(newInput)
+  // newInput.poster_link = e.target.value
+  // setFormData(newInput)
+  // console.log(e.target.value)
+
+  // const newInput = {...formData, [e.target.name]: e.target.value}
+  setFormData(newInput)
+
+ 
+
+
+
+
+}
+
 async function handleFormSubmit(e) {
   e.preventDefault()
-  console.log(formData)
 
   if (formData.production_countries &&formData.production_countries.length === 0) {
     formData.production_countries = ''
   }
   if (formData.production_companies&&formData.production_companies.length === 0) {
     formData.production_companies = ''
-  }
+  } 
   if (formData.spoken_languages && formData.spoken_languages.length === 0) {
     formData.spoken_languages = ''
   }
   if (formData.genres&&formData.genres.length === 0) {
     formData.genres = ''
   }
-
-  await updateTitle(formData)
-
-  console.log('UPDATED DATA???')
+  console.log('..................................formData')
   console.log(formData)
-  console.log()
-
-  //updating api
+  const res = await updateTitle(formData)
+  console.log('res')
+  console.log(res)
+  console.log(toWatchList.current)
+  // //updating api
   await updateUserDataDocument({user: currentUser, watchList: toWatchList.current, watched: watched.current});
-
-  
 
   setDetailsTitle(formData)
   setEditTitle('')
@@ -189,39 +229,11 @@ async function handleFormSubmit(e) {
   navigate('/film-details')
 
 
-  // const fetchedIdList = fetchedFilms.map((fetchedFilm) => fetchedFilm.id)
-  // let newArr
-  // if (fetchedIdList.includes(editTitle.id)) {
-  //   newArr = fetchedFilms.map(movie => {
-  //     if (movie.id === editTitle.id) {
-  //       return formData
-  //     } else {
-  //       return movie
-  //     }
-  //   })
-  //   setFetchedFilms(newArr)
-  // }
 
-
-  // if (onToWatchList(editTitle)) {
-  //    newArr = toWatchList.map(movie => {
-  //   if (movie.id === editTitle.id) {
-  //     return formData
-  //   } else {
-  //     return movie
-  //   }
-  //   })
-  //   setToWatchList(newArr)
-  //   console.log(newArr)
-  // }
-  // setDetailsTitle(editTitle)
-  // navigate('/film-details')  
 }
-
-// companyFields = companyFields[0].map((field) => (field.name))
-
   
   return (
+
     <div className='edit-film-page'>
     {!editTitle ? <h1>Loading...</h1> : (
 
@@ -241,7 +253,7 @@ async function handleFormSubmit(e) {
                   <li>Spoken Languages
 
                   {languageFields.map((field, index) => {
-                      return (<div key={index}>
+                      return (<div key={`lang-${index}`}>
                       <input name='spoken_languages' value={field.name} onChange={(e) => handleLangField(e, index)}></input>
                       <div className='btns-fields'>
                           <button type="button" className='btn field-btn' onClick={addLangField}>+</button>
@@ -257,9 +269,9 @@ async function handleFormSubmit(e) {
               <ul className='edit-film-form-column-right'>
                   <li>Genres
                       {genres.map((genre, index) => {
-                          return (<div key={index}>
+                          return (<div key={`genre-${index}`}>
                   
-                          <select key={index} name="genres" className='btn-dropdown' value={genre.name} onChange={(e) => handleGenres(e, index)}>
+                          <select key={`dropdown-${index}`} name="genres" className='btn-dropdown' value={genre.name} onChange={(e) => handleGenres(e, index)}>
                           <option value={'Action'}>Action</option>
                           <option value={'Adventure'}>Adventure</option>
                           <option value={'Animation'}>Animation</option>
@@ -293,26 +305,25 @@ async function handleFormSubmit(e) {
 
                   <li>Production Companies
 
-                  
-
-                  {companyFields[0].length ?         companyFields[0].map((field, index) => {
-                      return (<div key={index}>
-                      <input name='production_companies' value={field.name} onChange={(e) => handleCompanyField(e, index)}></input>
+                    {companyFields.map((field, index) => {
+                      return (<div key={`company-${index}`}>
+                      <input name='production_companies' value={field} onChange={(e) => handleCompanyField(e, index)}></input>
                       <div className='btns-fields'>
                           <button type="button" className='btn field-btn' onClick={() => addCompanyField()}>+</button>
                           <button type="button" className='btn field-btn' onClick={() => removeCompanyField(index)}>-</button>
                       </div>
                   
                       </div>)
-                  }) : console.log('something went wrong')
-                }
+                  })}
 
                   </li>
+
+
 
                   <li>Production Countries
                       {countryFields.map((field, index) => {
                           return (
-                          <div key={index}>
+                          <div key={`prod-${index}`}>
                               <input name='production_countries' value={field.name} onChange={(e) => handleCountryField(e, index)}></input>
                               
                               <div className='btns-fields'>
@@ -324,7 +335,7 @@ async function handleFormSubmit(e) {
 
                   </li>
               
-                  <li>Image URL: <input name='poster_link' value={editTitle.user_entered ? formData.poster_link : (formData.poster_path ? `https://image.tmdb.org/t/p/w${imgWidth}${formData.poster_path}` : '')} onChange={handleFormChange}></input>
+                  <li>Image URL: <input name={formData.user_entered ? 'poster_link' : 'poster_path'} value={formData.user_entered ? formData.poster_link : (formData.poster_path && `https://image.tmdb.org/t/p/w${imgWidth}${formData.poster_path}`)} onChange={handleUrlChange}></input>
                   </li>
 
               </ul>

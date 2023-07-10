@@ -102,6 +102,8 @@ export default function FilmCard({ item, setToWatchListElements,  setWatchedElem
   
     await addNewToWatch(newFilm)
 
+    console.log(toWatchList.current)
+
     await updateUserDataDocument({user: currentUser, watchList: toWatchList.current, watched: watched.current});
       
   }

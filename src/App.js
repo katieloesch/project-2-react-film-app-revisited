@@ -27,6 +27,7 @@ import ForgotPassword from './pages/Auth/ForgotPassword';
 import UpdateProfile from './pages/Auth/UpdateProfile';
 
 import { getUserData } from './api_config/firebase'; 
+import ContactIcons from './components/ContactIcons.js/ContactIcons';
 
 
 function App() {
@@ -79,6 +80,9 @@ function App() {
 
     if (!idList.includes(item.id)) {
       const newItem = { ...item };
+      if (newItem.production_companies.length > 0) {
+        newItem.production_companies = newItem.production_companies.map((item) => item.name)
+      }
       newItem.watched = false;
       toWatchList.current = [...toWatchList.current, newItem];
   
@@ -136,17 +140,21 @@ function App() {
 
   function updateTitle(updatedTitle) {
     console.log('updatedTitle is running .....')
+    console.log(updatedTitle)
 
     if (checkIfonToWatchList(updatedTitle)) {
       console.log('item is on towatchlist')
       const updatedToWatch = toWatchList.current.map((title) => {
         if (title.id === updatedTitle.id) {
+          
           return updatedTitle
         } else {
           return title
         }
       })
       toWatchList.current = updatedToWatch
+      console.log('fuck this SHITTTTT')
+      console.log(updatedToWatch)
     }
 
  
@@ -243,6 +251,8 @@ function App() {
 
             </Routes>
           </FilmTvContext.Provider>
+          <ContactIcons />        
+           
       </div>
   );
 }

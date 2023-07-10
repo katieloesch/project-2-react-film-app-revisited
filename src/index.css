@@ -41,6 +41,8 @@
   --ochre: #6f5e3c;
   --green: #71BC78;
   --pink: #fcaeb8;
+  --gray-a:  rgba(108, 119, 137, 0.55);
+  --gray: #6b7688;
   
   --font-main: 'caviar_dreams', 'Source Sans Pro', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   --font-editorial: 'uppereastsideregular', 'Source Sans Pro', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
