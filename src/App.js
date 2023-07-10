@@ -26,7 +26,7 @@ import ForgotPassword from './pages/Auth/ForgotPassword';
 import UpdateProfile from './pages/Auth/UpdateProfile';
 
 import { getUserData } from './api_config/firebase'; 
-import ContactIcons from './components/ContactIcons.js/ContactIcons';
+import ContactIcons from './components/ContactIcons/ContactIcons';
 
 
 function App() {

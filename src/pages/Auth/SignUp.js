@@ -3,7 +3,7 @@ import { useAuth } from '../../contexts/AuthContext';
 import './Auth.scss'
 import { Link, useNavigate } from "react-router-dom";
 import { createUserDataDocument } from './../../api_config/firebase';
-import ContactIcons from '../../components/ContactIcons.js/ContactIcons';
+import ContactIcons from '../../components/ContactIcons/ContactIcons';
 
 const SignUp = () => {
     const navigate = useNavigate();
