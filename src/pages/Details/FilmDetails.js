@@ -15,7 +15,7 @@ import './Details.scss'
 const FilmDetails = () => {
 
   
-  const { detailsTitle, toWatchList, watched, markAsWatched, unMarkAsWatched, removeFromWatchList, addNewToWatch, onWatchedList, checkIfonToWatchList, checkIfonWatched, setEditTitle } = useContext(FilmTvContext);
+  const { detailsTitle, toWatchList, watched, markAsWatched, unMarkAsWatched, removeFromWatchList, addNewToWatch, checkIfonToWatchList, checkIfonWatched, setEditTitle } = useContext(FilmTvContext);
   const { currentUser } = useAuth()
   const [showDeleteFromWatchList, setShowDeleteFromWatchList] = useState(checkIfonToWatchList(detailsTitle))
   const [showDeleteFromWatched, setShowDeleteFromWatched] = useState(checkIfonWatched(detailsTitle))
@@ -38,7 +38,7 @@ const FilmDetails = () => {
       )
     }
 
-  }, [])
+  }, [currentUser, toWatchList, watched])
 
   //trailer popup
   const [showTrailer, setShowTrailer] = useState(false)
@@ -49,11 +49,18 @@ const FilmDetails = () => {
 
   //WATCHLIST CRUD
   async function handleAddToWatchListClicked() {
-    setShowDeleteFromWatchList(true)
-    await addNewToWatch(detailsTitle)
-    //updating api
-    await updateUserDataDocument({user: currentUser, watchList: toWatchList.current, watched: watched.current});
-      
+    if (currentUser) { 
+      setShowDeleteFromWatchList(true)
+      await addNewToWatch(detailsTitle)
+      //updating api
+      await updateUserDataDocument({user: currentUser, watchList: toWatchList.current, watched: watched.current});
+        navigate(`/film-details/${detailsTitle.id}`);
+    } else {
+      navigate("/login")
+    }
+
+    
+ 
   }
 
   async function handleDeleteFromWatchlist() {
@@ -61,21 +68,26 @@ const FilmDetails = () => {
     setShowDeleteFromWatchList(false)
   
     //updating api
-    const resp = await updateUserDataDocument({user: currentUser, watchList: toWatchList.current});
+    await updateUserDataDocument({user: currentUser, watchList: toWatchList.current});
   
     //re-rendering watchlist
     if (window.location.href.slice(-12) === 'film-details') {
-    navigate("/film-details");
+    navigate(`/film-details/${detailsTitle.id}`);
     }
   }
 
   //WATCHED CRUD
 
     async function handleMarkAsWatched() {
-      await markAsWatched(detailsTitle)
-      setShowDeleteFromWatched(true)
-      await updateUserDataDocument({user: currentUser, watchList: toWatchList.current, watched: watched.current});
-
+      if (currentUser) {
+        await markAsWatched(detailsTitle)
+        setShowDeleteFromWatched(true)
+        await updateUserDataDocument({user: currentUser, watchList: toWatchList.current, watched: watched.current});
+  
+      } else {
+        navigate('/login')
+      }
+     
     }
   
     async function handleUnmarkAsWatched() {
@@ -110,7 +122,7 @@ function handleOpenTrailer() {
       detailsTitle.production_companies = detailsTitle.production_companies.map((item) => item.name)
     }
    setEditTitle(detailsTitle)
-   navigate('/edit-film')
+   navigate(`/edit-film/${detailsTitle.id}`);
   }
 
   const backdrop = {
@@ -201,7 +213,7 @@ const trailerVariants = {
                         <div className= 'details-btns'>
                           
                           {/* toggle button - mark as watched/unwatched */}
-                          {(showDeleteFromWatched || checkIfonWatched(detailsTitle)) ? 
+                          {(showDeleteFromWatched && checkIfonWatched(detailsTitle)) ? 
                             <button className='btn unmark-as-watched-btn' onClick={handleUnmarkAsWatched}>
                               <svg xmlns="http://www.w3.org/2000/svg" width="2.5em" height="2.5em" viewBox="0 0 24 24"><path fill="white" d="M22.54 16.88L20.41 19l2.13 2.12l-1.42 1.42L19 20.41l-2.12 2.13l-1.41-1.42L17.59 19l-2.12-2.12l1.41-1.41L19 17.59l2.12-2.12l1.42 1.41M12 9c-1.66 0-3 1.34-3 3s1.34 3 3 3s3-1.34 3-3s-1.34-3-3-3m0 8c-2.76 0-5-2.24-5-5s2.24-5 5-5s5 2.24 5 5c0 .5-.1 1-.23 1.43c.69-.27 1.44-.43 2.23-.43c1.12 0 2.17.32 3.07.85c.36-.58.67-1.2.93-1.85c-1.73-4.39-6-7.5-11-7.5S2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5c.35 0 .69 0 1.03-.05c-.03-.15-.03-.3-.03-.45c0-.79.16-1.54.43-2.23c-.43.13-.93.23-1.43.23Z"/></svg>
                             </button>
@@ -210,7 +222,7 @@ const trailerVariants = {
                               </button>}   
                                     
                           {/* toggle button - add/remove from watchlist */}
-                          {(showDeleteFromWatchList || checkIfonToWatchList(detailsTitle))  ?
+                          {(showDeleteFromWatchList && checkIfonToWatchList(detailsTitle))  ?
                             <button className='btn remove-from-to-watch-btn' onClick={handleDeleteFromWatchlist}>
                               <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 1024 1024"><path fill="#800020" d="M195.2 195.2a64 64 0 0 1 90.496 0L512 421.504L738.304 195.2a64 64 0 0 1 90.496 90.496L602.496 512L828.8 738.304a64 64 0 0 1-90.496 90.496L512 602.496L285.696 828.8a64 64 0 0 1-90.496-90.496L421.504 512L195.2 285.696a64 64 0 0 1 0-90.496z"/></svg>
                             </button>
@@ -219,7 +231,7 @@ const trailerVariants = {
                               </button>}
                             
                           {/* button - edit -> only visible if title saved to watchlist or watched */}
-                          { ((showDeleteFromWatched || checkIfonWatched(detailsTitle)) || (showDeleteFromWatchList || checkIfonToWatchList(detailsTitle))) &&  <button className='btn edit-btn' onClick={handleEditClicked}>edit</button>}
+                          { ((showDeleteFromWatched && checkIfonWatched(detailsTitle)) || (showDeleteFromWatchList && checkIfonToWatchList(detailsTitle))) &&  <button className='btn edit-btn' onClick={handleEditClicked}>edit</button>}
 
                           {/* button - play trailer */}
                           <button className='btn play-trailer-btn' onClick={handleOpenTrailer}>Trailer</button>

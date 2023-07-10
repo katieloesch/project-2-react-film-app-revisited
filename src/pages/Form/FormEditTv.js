@@ -305,7 +305,7 @@ async function handleFormSubmit(e) {
   setDetailsTitle(formData)
   setEditTitle('')
   setFormData(templateObj)
-  navigate('/tv-details')
+  navigate(`/tv-details/${editTitle.id}`)
   
 }
 

@@ -3,7 +3,6 @@ import { Routes, Route } from 'react-router-dom';
 
 import { FilmTvContext } from './contexts/FilmTvContext';
 import { useAuth } from './contexts/AuthContext';
-import { updateUserDataDocument } from './api_config/firebase';
 
 import Header from './components/Header/Header';
 import Homepage from './pages/Homepage/Homepage';
@@ -69,7 +68,7 @@ function App() {
     } else {
       console.log('no user found')
     }
-  }, [toWatchList.current])
+  }, [currentUser])
   
   async function addNewToWatch(item) {
     let idList = [];
@@ -185,10 +184,6 @@ function App() {
     watched.current = updatedList
   }
 
-  // function markSelectedAsWatched(selectedArr) {
-  //   console.log(selectedArr)
-  // }
-
   const contextValues = {
 
     userData,
@@ -216,8 +211,6 @@ function App() {
     editTitle,
     setEditTitle,
 
-    // editItem,
-    // markSelectedAsWatched
   }
 
   return (
@@ -234,13 +227,13 @@ function App() {
               <Route path='/watched' element={<Watched />}/>
               <Route path='/search' element={<Search />} />
 
-              <Route path='/film-details' element={<FilmDetails />} />
-              <Route path='/tv-details' element={<TvDetails />} />
+              <Route path='/film-details/:id' element={<FilmDetails />} />
+              <Route path='/tv-details/:id' element={<TvDetails />} />
               
               <Route path='/add-film' element={<FormAddFilm />} />
               <Route path='/add-tv' element={<FormAddTv />} />
-              <Route path='/edit-film' element={<FormEditFilm/>} />
-              <Route path='/edit-tv' element={<FormEditTv />} />
+              <Route path='/edit-film/:id' element={<FormEditFilm/>} />
+              <Route path='/edit-tv/:id' element={<FormEditTv />} />
 
               <Route path='/signup' element={<SignUp />} />
               <Route path='/login' element={<Login />} />

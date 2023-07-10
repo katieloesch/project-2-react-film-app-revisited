@@ -29,11 +29,7 @@
                 height: auto;
                 border: 8px solid var(--red);
             }
-    
-            .details-poster-img.tv, .poster-not-available.tv {
-                border: 8px solid var(--ochre);
-            }
-    
+
             @media only screen and (max-width: 1500px) {
                 width: 40%;
                 align-items: center;
@@ -284,6 +280,16 @@
     background-color: var(--ochre);
     border: 8px solid var(--ochre);
 }
+
+.tv-details-page {
+    .details-poster-img,
+    .poster-not-available {
+        border: 8px solid var(--ochre) !important;
+    }
+}
+
+
+
 
 .play-trailer-btn, .edit-btn {
     background-color: black;

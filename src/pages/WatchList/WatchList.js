@@ -15,7 +15,7 @@ export default function WatchList() {
   const navigate = useNavigate();
   const { currentUser } = useAuth()
 
-  const { toWatchList, watched, removeFromWatchList, markSelectedAsWatched, selected, setSelected } = useContext(FilmTvContext);
+  const { toWatchList, watched, removeFromWatchList, selected, setSelected, markAsWatched } = useContext(FilmTvContext);
   const [toWatchListElements, setToWatchListElements] = useState(toWatchList.current)
 
   useEffect(() => {
@@ -56,10 +56,6 @@ export default function WatchList() {
         
     }
   }
-  // function handleMarkSelectedWatched() {
-  //   const watchedItems = toWatchList.current.filter((item) => (item.selected === true))
-  //   markSelectedAsWatched(watchedItems)
-  // }
 
   async function clearToWatch() {
     toWatchList.current = []
@@ -85,7 +81,7 @@ export default function WatchList() {
         <div className='card-grid-container'>
         {(toWatchListElements && toWatchListElements.length !== 0) ? <ul className='card-grid'>{toWatchListElements.map(item => {
           if (item.title) {
-              return <FilmCard key={item.id} item={item} setToWatchListElements={setToWatchListElements}/>
+              return <FilmCard key={item.id} item={item} setToWatchListElements={setToWatchListElements} />
             } else {
               return <TvCard key={item.id} item={item} setToWatchListElements={setToWatchListElements} />
             }

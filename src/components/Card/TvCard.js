@@ -27,19 +27,52 @@ export default function TvCard({ item, setToWatchListElements,  setWatchedElemen
   }
 
   async function handleAddClicked() {
-    setShowDeleteFromWatchList(true)
+
+    if (currentUser) {
+      setShowDeleteFromWatchList(true)
+
+      const newTv = await (await fetch(`https://api.themoviedb.org/3/tv/${item.id}?api_key=${tmdbKey}&append_to_response=videos&language=en-US`)
+      .catch(err => console.log("Error with GET request:", err)))
+      .json()
+  
+      console.log(newTv)
+    
+      await addNewToWatch(newTv)
+      await updateUserDataDocument({user: currentUser, watchList: toWatchList.current, watched: watched.current});
+        
+
+    } else {
+      navigate("/login");
+    }
+
+}
+
+
+
+
+async function handleMarkAsWatched() {
+
+  if (currentUser) {
+    setShowDeleteFromWatched(true)
+
 
     const newTv = await (await fetch(`https://api.themoviedb.org/3/tv/${item.id}?api_key=${tmdbKey}&append_to_response=videos&language=en-US`)
     .catch(err => console.log("Error with GET request:", err)))
     .json()
-
-    console.log('fetched TV show???***************************************************')
-    console.log(newTv)
-  
-    await addNewToWatch(newTv)
+    await markAsWatched(newTv)
+    console.log('watched:')
+    console.log(watched.current)
+    
+    //updating api
     await updateUserDataDocument({user: currentUser, watchList: toWatchList.current, watched: watched.current});
       
+  } else {
+    navigate('/login');
+  }
+
 }
+
+
 
 async function handleDeleteFromWatchlist() {
   
@@ -50,7 +83,7 @@ async function handleDeleteFromWatchlist() {
   setToWatchListElements(toWatchList.current)
 
   //updating api
-  const resp = await updateUserDataDocument({user: currentUser, watchList: toWatchList.current, watched: watched.current});
+  await updateUserDataDocument({user: currentUser, watchList: toWatchList.current, watched: watched.current});
 
   //re-rendering watchlist
   if (window.location.href.slice(-9) === 'watchlist') {
@@ -60,34 +93,6 @@ async function handleDeleteFromWatchlist() {
 }
 
 
-async function handleMarkAsWatched() {
-  setShowDeleteFromWatched(true)
-  await markAsWatched(item)
-  console.log('watched:')
-  console.log(watched.current)
-  
-  //updating api
-  await updateUserDataDocument({user: currentUser, watchList: toWatchList.current, watched: watched.current});
-    
-}
-
-async function handleDeleteFromWatchlist() {
-  removeFromWatchList(item)
-  setShowDeleteFromWatchList(false)
-  console.log('toWatchList')
-  console.log(toWatchList.current)
-  setToWatchListElements(toWatchList.current)
-
-  //updating api
-  const resp = await updateUserDataDocument({user: currentUser, watchList: toWatchList.current, watched: watched.current});
-
-  //re-rendering watchlist
-  if (window.location.href.slice(-9) === 'watchlist') {
-    console.log('on the watchlist ....')
-    navigate("/watchlist");
-
-  }
-}
 async function handleUnmarkAsWatched() {
   unMarkAsWatched(item)
   setShowDeleteFromWatched(false)
@@ -96,7 +101,7 @@ async function handleUnmarkAsWatched() {
   setWatchedElements(watched.current)
 
   //updating api
-  const resp = await updateUserDataDocument({user: currentUser, watchList: toWatchList.current, watched: watched.current});
+  await updateUserDataDocument({user: currentUser, watchList: toWatchList.current, watched: watched.current});
 
   //re-rendering watchlist
   if (window.location.href.slice(-9) === 'watchlist') {
@@ -137,7 +142,7 @@ async function handleUnmarkAsWatched() {
       console.log('fetched film')
     }
 
-    navigate("/tv-details");
+    navigate(`/tv-details/${item.id}`);
 
   }
 

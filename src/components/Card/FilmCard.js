@@ -26,14 +26,25 @@ export default function FilmCard({ item, setToWatchListElements,  setWatchedElem
 
 
   async function handleMarkAsWatched() {
-    setShowDeleteFromWatched(true)
-    await markAsWatched(item)
-    console.log('watched:')
-    console.log(watched.current)
-    
-    //updating api
-    await updateUserDataDocument({user: currentUser, watchList: toWatchList.current, watched: watched.current});
+
+    if (currentUser) {
+      setShowDeleteFromWatched(true)
+
+      const newFilm = await (await fetch(`https://api.themoviedb.org/3/movie/${item.id}?api_key=${tmdbKey}&append_to_response=videos&language=en-US`)
+      .catch(err => console.log("Error with GET request:", err)))
+      .json()
       
+      await markAsWatched(newFilm)
+      console.log('watched:')
+      console.log(watched.current)
+      
+      //updating api
+      await updateUserDataDocument({user: currentUser, watchList: toWatchList.current, watched: watched.current});
+
+    } else {
+      navigate('/login');
+    }
+
   }
   async function handleUnmarkAsWatched() {
     unMarkAsWatched(item)
@@ -43,7 +54,7 @@ export default function FilmCard({ item, setToWatchListElements,  setWatchedElem
     setWatchedElements(watched.current)
   
     //updating api
-    const resp = await updateUserDataDocument({user: currentUser, watchList: toWatchList.current, watched: watched.current});
+    await updateUserDataDocument({user: currentUser, watchList: toWatchList.current, watched: watched.current});
   
     //re-rendering watchlist
     if (window.location.href.slice(-9) === 'watchlist') {
@@ -82,7 +93,7 @@ export default function FilmCard({ item, setToWatchListElements,  setWatchedElem
       console.log('fetched film')
     }
 
-    navigate("/film-details");
+    navigate(`/film-details/${item.id}`);
 
 
   }
@@ -94,30 +105,27 @@ export default function FilmCard({ item, setToWatchListElements,  setWatchedElem
   }
 
   async function handleAddClicked() {
-    setShowDeleteFromWatchList(true)
 
-    const newFilm = await (await fetch(`https://api.themoviedb.org/3/movie/${item.id}?api_key=${tmdbKey}&append_to_response=videos&language=en-US`)
-    .catch(err => console.log("Error with GET request:", err)))
-    .json()
-  
-    await addNewToWatch(newFilm)
+    if (currentUser) {
+      setShowDeleteFromWatchList(true)
 
-    console.log(toWatchList.current)
-
-    await updateUserDataDocument({user: currentUser, watchList: toWatchList.current, watched: watched.current});
-      
-  }
-
-  async function handleMarkAsWatched() {
-    setShowDeleteFromWatched(true)
-    await markAsWatched(item)
-    console.log('watched:')
-    console.log(watched.current)
+      const newFilm = await (await fetch(`https://api.themoviedb.org/3/movie/${item.id}?api_key=${tmdbKey}&append_to_response=videos&language=en-US`)
+      .catch(err => console.log("Error with GET request:", err)))
+      .json()
     
-    //updating api
-    await updateUserDataDocument({user: currentUser, watchList: toWatchList.current, watched: watched.current});
-      
+      await addNewToWatch(newFilm)
+  
+      console.log(toWatchList.current)
+  
+      await updateUserDataDocument({user: currentUser, watchList: toWatchList.current, watched: watched.current});
+        
+    } else {
+      navigate('/login');
+    }
+ 
   }
+
+
 
 async function handleDeleteFromWatchlist() {
   removeFromWatchList(item)
@@ -127,7 +135,7 @@ async function handleDeleteFromWatchlist() {
   setToWatchListElements(toWatchList.current)
 
   //updating api
-  const resp = await updateUserDataDocument({user: currentUser, watchList: toWatchList.current, watched: watched.current});
+  await updateUserDataDocument({user: currentUser, watchList: toWatchList.current, watched: watched.current});
 
   //re-rendering watchlist
   if (window.location.href.slice(-9) === 'watchlist') {
@@ -136,23 +144,7 @@ async function handleDeleteFromWatchlist() {
  
   }
 }
-async function handleUnmarkAsWatched() {
-  unMarkAsWatched(item)
-  setShowDeleteFromWatched(false)
-  console.log('watched:')
-  console.log(watched.current)
-  setWatchedElements(watched.current)
 
-  //updating api
-  const resp = await updateUserDataDocument({user: currentUser, watchList: toWatchList.current, watched: watched.current});
-
-  //re-rendering watchlist
-  if (window.location.href.slice(-9) === 'watchlist') {
-    console.log('on watched....')
-    navigate("/watched");
- 
-  }
-}
 
 const imgWidth = '400'
 

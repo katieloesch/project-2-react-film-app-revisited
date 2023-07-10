@@ -192,7 +192,7 @@ async function handleFormSubmit(e) {
   setDetailsTitle(formData)
   setEditTitle('')
   setFormData(templateObj)
-  navigate('/film-details')
+  navigate(`/film-details/${editTitle.id}`);
 
 
 

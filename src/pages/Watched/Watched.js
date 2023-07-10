@@ -58,8 +58,8 @@ export default function Watched() {
   async function clearWatched() {
     watched.current = []
 
-    setWatchedElements(toWatchList.current);
-    const resp = await updateUserDataDocument({user: currentUser, watchList: toWatchList.current, watched: watched.current});
+    setWatchedElements(watched.current);
+    await updateUserDataDocument({user: currentUser, watchList: toWatchList.current, watched: watched.current});
 
   }
 
