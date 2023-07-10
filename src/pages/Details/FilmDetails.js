@@ -110,8 +110,6 @@ function handleOpenTrailer() {
       detailsTitle.production_companies = detailsTitle.production_companies.map((item) => item.name)
     }
    setEditTitle(detailsTitle)
-   console.log('editing:::::::::::::::::::')
-   console.log(detailsTitle)
    navigate('/edit-film')
   }
 
@@ -252,7 +250,6 @@ const trailerVariants = {
                         {(detailsTitle.genres&&detailsTitle.genres.length!==0) && <li key='genres'><ul className='details-ul'><span className='details-title'>Genres: </span>{detailsTitle.genres.map((genre) => {
                         return <li className="details-li" key={genre.name}>{'- '}{genre.name}</li>})}
                         </ul></li>}
-                        {console.log(detailsTitle)}                   
                         {(detailsTitle.production_companies&&detailsTitle.production_companies.length!==0) && (
                           detailsTitle.production_companies[0].name ? 
                           <li key='prod-companies'><ul className='details-ul'><span className='details-title'>Production Companies:&nbsp;</span>{detailsTitle.production_companies.map((company) => {

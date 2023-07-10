@@ -81,27 +81,30 @@ console.log(editTitle)
 }
 
 
-const [companyFields, setCompanyFields] = useState([formData.production_companies])
+
+let [companyFields, setCompanyFields] = useState(formData.production_companies)
+
 function addCompanyField(){
-  setCompanyFields([...companyFields, ''])
+  const newCompanies = [...formData.production_companies, '']
+  setCompanyFields(newCompanies)
 }
 
 function removeCompanyField(index) {
-  if (index > 0) {
-    const fields = [...companyFields]
-    fields.splice(index, 1)
-    setCompanyFields(fields)
-  }
+  let newCompanies = [...formData.production_companies]
+    if (index > 0) {
+      newCompanies.splice(index, 1)
+    }
+  setCompanyFields(newCompanies)
+  setFormData({...formData, production_companies: newCompanies})
 }
 
 function handleCompanyField(e, index) {
-  const data = [...companyFields]
+  const data = [...formData.production_companies]
   data[index] = e.target.value
   setCompanyFields(data);
   const newInput = {...formData}
   newInput[e.target.name] = data
   setFormData(newInput)
-
 }
 
 const [countryFields, setCountryFields] = useState(formData.production_countries)
@@ -110,12 +113,17 @@ function addCountryField(){
 }
 
 
+
 function removeCountryField(index) {
+
+  let newCountries = [...formData.production_countries]
+
   if (index > 0) {
-    const fields = [...countryFields]
-    fields.splice(index, 1)
-    setCountryFields(fields)
+    newCountries.splice(index, 1)
   }
+
+  setCountryFields(newCountries)
+  setFormData({...formData, production_countries: newCountries})
 }
 
 function handleCountryField(e, index) {
@@ -128,31 +136,34 @@ function handleCountryField(e, index) {
 }
 
 
+
+
 const [networkFields, setNetworkFields] = useState(formData.networks)
 function addNetworkField(){
- setNetworkFields([...networkFields, {name: ''}])
+  const newNetworks = [...formData.networks, '']
+ setNetworkFields(newNetworks)
 }
 
-
 function removeNetworkField(index) {
+  let newNetworks = [...formData.networks]
   if (index > 0) {
-    const fields = [...networkFields]
-    fields.splice(index, 1)
-    setNetworkFields(fields)
+    newNetworks.splice(index, 1)
+   
   }
-
-
+  setNetworkFields(newNetworks)
+  setFormData({...formData, networks: newNetworks})
 }
 
 function handleNetworkField(e, index) {
-  const data = [...countryFields]
-  data[index] = {name: e.target.value}
+  console.log(formData.networks)
+  const data = [...formData.networks]
+  data[index] = e.target.value;
   setNetworkFields(data);
   const newInput = {...formData}
   newInput[e.target.name] = data
   setFormData(newInput)
+  console.log(formData.networks)
 }
-
 
 const [languageFields, setLanguageFields] = useState(formData.spoken_languages)
 function addLangField(){
@@ -160,12 +171,13 @@ function addLangField(){
 }
 
 function removeLangField(index) {
-  if (index > 0) {
-    const fields = [...languageFields]
-    fields.splice(index, 1)
-    setLanguageFields(fields)
-  }
+  let newLang = [...formData.spoken_languages]
 
+  if (index > 0) {
+    newLang.splice(index, 1)
+  }
+  setLanguageFields(newLang)
+  setFormData({...formData, spoken_languages: newLang})
 }
 
 function handleLangField(e, index) {
@@ -185,13 +197,14 @@ function handleLangField(e, index) {
  }
  
  function removeCreatedBy(index) {
-   if (index > 0) {
-     const fields = [...createdByFields]
-     fields.splice(index, 1)
-     setCreatedByFields(fields)
-   }
- 
- }
+    let newCreators = [...formData.created_by]
+    if (index > 0) {
+      newCreators.splice(index, 1)
+    }
+
+    setCreatedByFields(newCreators)
+    setFormData({...formData, created_by: newCreators})
+  }
  
  function handleCreatedByField(e, index) {
    const data = [...createdByFields]
@@ -202,28 +215,28 @@ function handleLangField(e, index) {
    setFormData(newInput)
   }
 
-const [genres, setGenres] = useState(formData.genres)
-
-function addGenre(){
- setGenres([...genres, {name: ''}])
-}
-
-function removeGenre(index) {
-  if (index > 0) {
-    const dropDowns = [...genres]
-    dropDowns.splice(index, 1)
-    setGenres(dropDowns)
+  const [genres, setGenres] = useState(formData.genres)
+  function addGenre(){
+   setGenres([...genres, {name: ''}])
   }
-}
-
-function handleGenres(e, index) {
-  const data = [...genres]
-  data[index] = {name: e.target.value}
-  setGenres(data);
-  const newInput = {...formData}
-  newInput[e.target.name] = data
-  setFormData(newInput)
-}
+  function removeGenre(index) {
+    let newGenres = [...formData.genres]
+    if (index > 0) {
+      newGenres.splice(index, 1)
+      
+    }
+    setGenres(newGenres)
+    setFormData({...formData, genres: newGenres})
+  }
+  
+  function handleGenres(e, index) {
+    const data = [...genres]
+    data[index] = {name: e.target.value}
+    setGenres(data);
+    const newInput = {...formData}
+    newInput[e.target.name] = data
+    setFormData(newInput)
+  }
 
 
 const [lastEpisodeData, setLastEpisodeData] = useState({
@@ -236,13 +249,23 @@ const [lastEpisodeData, setLastEpisodeData] = useState({
 
 
 function handleLastEpisodeChange(e) {
-    const lastEp = {...lastEpisodeData, [e.target.name]: e.target.value}
-    console.log(lastEp)
-    setLastEpisodeData(lastEp)
-  
-    const newInput = {...formData, ['last_episode_to_air']: lastEpisodeData}
-        console.log(newInput)
-        setFormData(newInput)        
+  const lastEp = {...lastEpisodeData, [e.target.name]: e.target.value}
+  console.log(lastEp)
+  setLastEpisodeData(lastEp)
+
+  const newInput = {...formData, last_episode_to_air: lastEp}
+  console.log(newInput)
+  setFormData(newInput)        
+}
+
+function handleUrlChange(e) {
+  console.log(formData.user_entered)
+  console.log(e.target.name)
+  console.log(e.target.value)
+  const newInput = {...formData, [e.target.name]: e.target.value}
+  newInput.user_entered = true
+  newInput.poster_path = ''
+  setFormData(newInput)
 }
 
 
@@ -369,7 +392,7 @@ async function handleFormSubmit(e) {
 
             {networkFields.map((field, index) => {
                 return (<div key={index}>
-                <input name="networks" value={field.name} onChange={(e) => handleNetworkField(e, index)}></input>
+                <input name="networks" value={field} onChange={(e) => handleNetworkField(e, index)}></input>
                 <div className='btns-fields'>
                   <button type="button" className='btn field-btn' onClick={addNetworkField}>+</button>
                   <button type="button" className='btn field-btn' onClick={() => removeNetworkField(index)} >-</button>
@@ -382,18 +405,17 @@ async function handleFormSubmit(e) {
             <li>Production Companies:
 
           
-            {companyFields.length ? companyFields.map((field, index) => {
-            
-                return (<div key={index}>
-                <input name='production_companies' value={field} onChange={(e) => handleCompanyField(e, index)}></input>
-                <div className='btns-fields'>
-                    <button type="button" className='btn field-btn' onClick={addLangField}>+</button>
-                    <button type="button" className='btn field-btn' onClick={() => removeCompanyField(index)}>-</button>
-                </div>
-            
-                </div>)
-            }) : console.log('something went wrong')
-          }
+           
+            {companyFields.map((field, index) => {
+              return (<div key={`company-${index}`}>
+              <input name='production_companies' value={field} onChange={(e) => handleCompanyField(e, index)}></input>
+              <div className='btns-fields'>
+                  <button type="button" className='btn field-btn' onClick={() => addCompanyField()}>+</button>
+                  <button type="button" className='btn field-btn' onClick={() => removeCompanyField(index)}>-</button>
+              </div>
+          
+              </div>)
+            })}
 
             </li>
             <li>Origin Country: <input name='origin_country' onChange={handleFormChange} value={formData.origin_country}></input></li>
@@ -416,7 +438,7 @@ async function handleFormSubmit(e) {
             <li>Title: <input name='name' onChange={handleLastEpisodeChange} value={formData.last_episode_to_air.name}></input></li>
             <li>Air Date: <input name='air_date' placeholder='DD/MM/YYYY' onChange={handleLastEpisodeChange} value={formData.last_episode_to_air.air_date}></input></li>
             <li>runtime: <input name='runtime' onChange={handleLastEpisodeChange} value={formData.last_episode_to_air.runtime}></input></li>
-            <li>Image URL: <input name='poster_link' value={editTitle.user_entered ? formData.poster_link : (formData.poster_path ? `https://image.tmdb.org/t/p/w${imgWidth}${formData.poster_path}` : '')} onChange={handleFormChange}></input>
+            <li>Image URL: <input name={formData.user_entered ? 'poster_link' : 'poster_path'} value={formData.user_entered ? formData.poster_link : (formData.poster_path && `https://image.tmdb.org/t/p/w${imgWidth}${formData.poster_path}`)} onChange={handleUrlChange}></input>
             </li>
           </ul>
         </div>

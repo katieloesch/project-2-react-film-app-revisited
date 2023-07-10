@@ -11,7 +11,6 @@ const FormEditFilm = () => {
   const { editTitle, setEditTitle, setDetailsTitle, toWatchList, watched, updateTitle } = useContext(FilmTvContext);
   const { currentUser } = useAuth();
 
-
   const templateObj = {
 
     genres: editTitle.genres,
@@ -71,31 +70,12 @@ function removeCompanyField(index) {
 }
 
 function handleCompanyField(e, index) {
-
-  console.log(e.target.value)
   const data = [...formData.production_companies]
   data[index] = e.target.value
   setCompanyFields(data);
   const newInput = {...formData}
   newInput[e.target.name] = data
   setFormData(newInput)
-  console.log('newInput<<<<<<<<<<<<<<<<<<<<<<<<')
-  console.log(newInput)
-  // console.log(newInput[e.)
-  // setFormData((formData) => newInput)
-  // console.log('newInput')
-  // console.log(newInput)
-
-  // function handleLangField(e, index) {
-  //   const data = [...languageFields]
-  //   data[index] = {name: e.target.value}
-  //   setLanguageFields(data);
-  //   const newInput = {...formData}
-  //   newInput[e.target.name] = data
-  //   setFormData(newInput)
-  
-  // }
-  
 }
 
 const [countryFields, setCountryFields] = useState(formData.production_countries)
@@ -181,22 +161,8 @@ function handleUrlChange(e) {
   console.log(e.target.value)
   const newInput = {...formData, [e.target.name]: e.target.value}
   newInput.user_entered = true
-    newInput.poster_path = ''
-
-  // console.log('NEWinput')
-  // console.log(newInput)
-  // newInput.poster_link = e.target.value
-  // setFormData(newInput)
-  // console.log(e.target.value)
-
-  // const newInput = {...formData, [e.target.name]: e.target.value}
+  newInput.poster_path = ''
   setFormData(newInput)
-
- 
-
-
-
-
 }
 
 async function handleFormSubmit(e) {

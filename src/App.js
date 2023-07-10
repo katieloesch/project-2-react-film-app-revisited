@@ -83,6 +83,9 @@ function App() {
       if (newItem.production_companies.length > 0) {
         newItem.production_companies = newItem.production_companies.map((item) => item.name)
       }
+      if (newItem.networks && newItem.networks.length > 0) {
+        newItem.networks = newItem.networks.map((item) => item.name)
+      }
       newItem.watched = false;
       toWatchList.current = [...toWatchList.current, newItem];
   

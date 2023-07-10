@@ -128,6 +128,12 @@ function handleOpenTrailer() {
   }
 
   function handleEditClicked() {
+    if (detailsTitle.production_companies[0].name) {
+      detailsTitle.production_companies = detailsTitle.production_companies.map((item) => item.name)
+    }
+    if (detailsTitle.networks[0].name) {
+      detailsTitle.networks = detailsTitle.networks.map((item) => item.name)
+    }
     setEditTitle(detailsTitle)
     navigate('/edit-tv')
   }
@@ -191,19 +197,24 @@ const trailerVariants = {
           </motion.div> : null}
     
         <section className='details-poster'>
-          {/* tv show poster */}
+          {/* tv poster */}
           {detailsTitle.poster_path ? (
-          <img
-          className='details-poster-img tv'
-          src={`https://image.tmdb.org/t/p/w${imgWidth}${detailsTitle.poster_path}`}
-          alt={`${detailsTitle.name} poster`}
-          />) : 
-          <img
-           className='poster-not-available tv'
-           src={images.posterNotAvailable}
-           alt={`${detailsTitle.name} poster not available`}
-           style={{width: `${imgWidth}px`}}
-           />}
+            <img
+            className='details-poster-img'
+            src={`https://image.tmdb.org/t/p/w${imgWidth}${detailsTitle.poster_path}`}
+            alt={`${detailsTitle.title} poster`}
+            />)
+            : (detailsTitle.poster_link ? 
+              <img
+            className='details-poster-img'
+            src={`${detailsTitle.poster_link}`}
+            alt={`${detailsTitle.title} poster`}
+            /> : <img
+            className='poster-not-available'
+            src={images.posterNotAvailable}
+            alt={`${detailsTitle.title} poster not available`}
+            style={{width: `${imgWidth}px`}}
+            />)}
     
           {/* buttons */}
           <div className= 'details-btns tv'>
@@ -260,9 +271,19 @@ const trailerVariants = {
       
               {detailsTitle.first_air_date && <li key='first-date'><span className='details-title'>First Air Date:&nbsp;</span>{convertDate(detailsTitle.first_air_date)}</li>}
               {detailsTitle.last_air_date && <li key='last-date'><span className='details-title'>Last Air Date:&nbsp;</span>{convertDate(detailsTitle.last_air_date)}</li>}
-              {(detailsTitle.networks&&detailsTitle.networks.length!==0) && <li key='networks'><ul className='details-ul'><span className='details-title'>Networks:&nbsp;</span>{detailsTitle.networks.map((network) => {
-                return <li className="details-li" key={network.name}>{'- '}{network.name}</li>})}
-                </ul></li>}
+              
+                {(detailsTitle.networks&&detailsTitle.networks.length!==0) && (
+                  detailsTitle.networks[0].name ? 
+                  <li key='netwirjs'><ul className='details-ul'><span className='details-title'>Networks:&nbsp;</span>{detailsTitle.networks.map((network) => {
+                    return <li className="details-li" key={network.name}>{'- '}{network.name}</li>})}
+                    </ul></li>
+                    : <li key='networks'><ul className='details-ul'><span className='details-title'>Networks:&nbsp;</span>{detailsTitle.networks.map((network) => {
+                    return <li className="details-li" key={network}>{'- '}{network}</li>})}
+                    </ul></li>)}
+
+
+
+
               {detailsTitle.origin_country && <li key='og-country'><span className='details-title'>Origin Country:&nbsp;</span>{detailsTitle.origin_country}</li>}
 
               {(detailsTitle.production_countries&&detailsTitle.production_countries.length!==0) && <li key='prod-countries'><ul className='details-ul'><span className='details-title'>Production Countries:&nbsp;</span>{detailsTitle.production_countries.map((country) => {
@@ -286,16 +307,21 @@ const trailerVariants = {
 
        
       
-              {(detailsTitle.production_companies&&detailsTitle.production_companies.length!==0) && <li key='prod-companies'><ul className='details-ul'><span className='details-title'>Production Companies:&nbsp;</span>{detailsTitle.production_companies.map((company) => {
-                return <li className="details-li" key={company.name}>{'- '}{company.name}</li>})}
-                </ul></li>}
+                  {(detailsTitle.production_companies&&detailsTitle.production_companies.length!==0) && (
+                    detailsTitle.production_companies[0].name ? 
+                    <li key='prod-companies'><ul className='details-ul'><span className='details-title'>Production Companies:&nbsp;</span>{detailsTitle.production_companies.map((company) => {
+                      return <li className="details-li" key={company.name}>{'- '}{company.name}</li>})}
+                      </ul></li>
+                      : <li key='prod-companies'><ul className='details-ul'><span className='details-title'>Production Companies:&nbsp;</span>{detailsTitle.production_companies.map((company) => {
+                      return <li className="details-li" key={company}>{'- '}{company}</li>})}
+                      </ul></li>)}
              
     
     
               {(detailsTitle.last_episode_to_air&&detailsTitle.last_episode_to_air.air_date) && <li key='last-episode'><ul><span className='details-title'>Last Episode to air: </span>
               {detailsTitle.last_episode_to_air.name && <li key='last-name'>Title: {detailsTitle.last_episode_to_air.name}</li>}
-              {detailsTitle.last_episode_to_air.season_number && <li key='last-ep-season'>Season {detailsTitle.last_episode_to_air.season_number}</li>}
-              {detailsTitle.last_episode_to_air.episode_number && <li key='last-ep'>Episode {detailsTitle.last_episode_to_air.episode_number}</li>}
+              {detailsTitle.last_episode_to_air.season_number && <li key='last-ep-season'>Season: {detailsTitle.last_episode_to_air.season_number}</li>}
+              {detailsTitle.last_episode_to_air.episode_number && <li key='last-ep'>Episode: {detailsTitle.last_episode_to_air.episode_number}</li>}
               {detailsTitle.last_episode_to_air.air_date && <li key='last-ep-air-date'>Air Date: {convertDate(detailsTitle.last_episode_to_air.air_date)}</li>}
               {detailsTitle.last_episode_to_air.runtime && <li key='last-ep-runtime'>Runtime: {detailsTitle.last_episode_to_air.runtime} mins</li>}
               {detailsTitle.last_episode_to_air.overview && <li key='last-synopsis'>Synopsis: {detailsTitle.last_episode_to_air.overview}</li>}
