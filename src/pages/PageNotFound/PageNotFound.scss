@@ -1,12 +1,54 @@
-.gif {
-    height: 35vh;
-    margin-bottom: 25px;
-    margin: 25px;
-    border-radius: 5px;
+
+.page-not-found {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    .page-not-found-title {
+        font-size: 2.75rem;
+        font-family: var(--font-editorial);
+        margin-bottom: 5rem;
+        text-align: center;
+
+        @media only screen and (max-width: 800px) {
+            margin-top: 2.5rem;
+        }
+ 
+
+
+    }
+
+
+    .gifs {
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: row;
+        gap: 25px;
+
+
+        @media only screen and (max-width: 950px) {
+           flex-direction: column;
+        }
+
+     
+    
+        .gif {
+            height: 18rem;
+            border-radius: 5px;
+
+            @media only screen and (max-width: 950px) {
+                flex-direction: column;
+                width: 15rem;
+                height: auto;
+            }
+        }
+
+    }
+
+
 }
 
-.page-not-found-title {
-    font-size: 2.5vw;
-    font-family: "caviar_dreams","Source Sans Pro", sans-serif;
-
-}

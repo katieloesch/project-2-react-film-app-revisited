@@ -153,8 +153,6 @@ const trailerVariants = {
   }
 }
 
-
-
   return (
     <div className='film-details-page'>
     {showOverlay &&    <motion.div

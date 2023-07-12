@@ -13,11 +13,18 @@
     bottom: 0;
 
 
-    @media screen and (max-width: 450px) {
+    @media screen and (max-width: 800px) {
+        top: 68%;
+    }
+    @media screen and (max-width: 720px) {
         top: 60%;
     }
-    @media screen and (max-width: 400px) {
-        top: 65%;
+    @media screen and (max-width: 500px) {
+        position:relative;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
     }
 
       
@@ -65,21 +72,6 @@
         }
       }
     }
-
-
-    // .contact-icon-code, .contact-icon-github, .contact-icon-mail, .contact-icon-portfolio   {
-    //   svg {
-    //      margin-bottom: 3px;
-          
-    //   }
-    // }
-    // .contact-icon-linkedin {
-    //   svg {
-    //      margin-bottom: 2px;
-          
-    //   }
-    // }
-
 
     .contact-icon-mail, .contact-icon-portfolio {
       svg {

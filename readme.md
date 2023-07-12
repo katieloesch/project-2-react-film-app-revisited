@@ -16,8 +16,12 @@
 
 ## <a name="description"></a> 1. Description
 
-A movie and tv watchlist SPA with full CRUD functionality built from scratch in 8 days using ReactJS/CSS. This solo project was the second application built as part of the curriculum for the General Assembly Software Engineering Immersive Course, with the objective of building a front-end list-based application that updates the UI and makes requests to a third-party API.
-The user can add movies and tv shows to a 'watched' and a 'to-watch' list, mark them as watched as well as edit and remove them from the list. By clicking on cover art of a film and or tv show, more information is displayed about the title. The user also has the option to add movies and tv shows from the public TMDB API to their lists and modify/remove them.
+A movie and tv watchlist application with full CRUD functionality built from scratch in 8 days using ReactJS/SCSS.
+This solo project is the updated version of the second project I built as part of the curriculum for the General Assembly Software Engineering Immersive Course, with the objective of building a front-end list-based application that updates the UI and makes requests to a third-party API. <br>
+
+The user can add movies and tv shows to a 'watched' and a 'to-watch' list, mark them as watched as well as edit and remove them from the list. By clicking on cover art of a film and or tv show, more information is displayed about the title, along with the option to watch a trailer. The user can also has the search for and add movies and tv shows from the public TMDB API to their lists and modify/remove them. <br>
+
+This updated version of the project is fully responsive for easy navigation on all screen sizes and connects to firestore/firebase allowing users to create an account and save their data.
 
 <br>
 
@@ -32,7 +36,6 @@ The user can add movies and tv shows to a 'watched' and a 'to-watch' list, mark 
 <br>
 
 - original project repo: https://github.com/katieloesch/project-2-react-film-app
-  - original deployment link: https://github.com/katieloesch/project-2-react-film-app
 
 ## <a name="installation"></a> 3. Installation
 
@@ -78,7 +81,7 @@ Additional components:
 
   - iconify (open source svg library)
     - https://iconify.design/
-  - react icons
+  - react-icons
     - https://www.npmjs.com/package/react-icons
     - https://react-icons.github.io/react-icons/
 
@@ -251,7 +254,9 @@ Since submitting this project I have also developed a preference for useing SCSS
 
 I also decided to move the forms for adding and editing film and tv titles as well as the details display to separate routes rather than using modals as I felt that would make it more straightforward to implement responsive design later on.
 
-Another addition is the incorporation of firebase and firestore to store user data. In the original project, none of the items added to wishlists persisted after reload as it a front-end application. I used firebase for user accounts and authenication and cloud firestore to store each user's lists of to-watch and watched titles.
+#### 12/07/2023
+
+Another addition is the incorporation of firebase and firestore to store user data. In the original project, none of the items added to wishlists persisted after reload. I used firebase for user accounts and authenication and cloud firestore to store each user's lists of to-watch and watched titles.
 
 ## 8. <a name="challenges"></a> Challenges
 

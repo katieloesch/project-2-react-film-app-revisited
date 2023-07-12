@@ -2,8 +2,6 @@ import React, { useRef, useState } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import './Auth.scss'
 import { Link, useNavigate } from "react-router-dom";
-import { createUserDataDocument } from './../../api_config/firebase';
-import ContactIcons from '../../components/ContactIcons/ContactIcons';
 
 const SignUp = () => {
     const navigate = useNavigate();
@@ -20,6 +18,10 @@ const SignUp = () => {
 
         if (pwRef.current.value !== pwConfirmRef.current.value) {
             return setError('Passwords do not match!')
+            
+        } else if (pwRef.current.value.length<6) {
+            console.log('not 6 characters')
+            return setError('Password must be at least 6 characters!')
         }
 
         try {
