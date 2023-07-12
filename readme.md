@@ -31,7 +31,7 @@ This updated version of the project is fully responsive for easy navigation on a
 
 ## <a name="deployment-link"></a> 2. Deployment link
 
-- deployment link: https://react-film-app.katieloesch.co.uk/
+- deployment link: https://film-tv-stuff.katieloesch.co.uk/
 
 <br>
 
